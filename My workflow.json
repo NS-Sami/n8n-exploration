@@ -1,0 +1,897 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Email automation\nFirst email sent through n8n"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -224
+      ],
+      "id": "10576de6-e5c3-4f69-84b6-fbde59cd07ed",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "sendTo": "2022-3-60-063@std.ewubd.edu",
+        "subject": "First use of n8n",
+        "emailType": "text",
+        "message": "Congrads.!! You learned how to send e-mail using n8n.",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        176,
+        -16
+      ],
+      "id": "15673241-c312-4045-aeca-a7569d14f864",
+      "name": "Send a message",
+      "webhookId": "9270c220-85e3-4e5c-8a3c-10ce618fef12",
+      "notesInFlow": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ctNY1ZN8Oc8Tpz4z",
+          "name": "SaM Gaming"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Form Fill -> Ai Autoresponder\nUse of \"form fill\" trigger and learn how to use ai for automating messages",
+        "width": 288
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        192
+      ],
+      "id": "7b4f2f46-8986-42fb-9245-d3a47158836c",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "formTitle": "Onboarding Form",
+        "formDescription": "Let's get onboard star start booming soon",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "First Name : ",
+              "placeholder": "Sami",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Last Name : ",
+              "defaultValue": "Subhan",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "E-mail : ",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Phone Number :",
+              "placeholder": "01X XXXX XXXX",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Work Description : ",
+              "placeholder": "What's your expectation from us..",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Site Type :",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Sleek"
+                  },
+                  {
+                    "option": "Minimalistic"
+                  },
+                  {
+                    "option": "Luxurious"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Timeline : ",
+              "placeholder": "3-4 weeks",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "buttonLabel": "Let's Go"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        -224,
+        448
+      ],
+      "id": "3daef14e-df1b-4139-8c2f-5a17e3a678e7",
+      "name": "On form submission",
+      "webhookId": "caf90bcc-1b2b-451e-86c3-e59f5427de32"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "I want you identify yourself as an intelligent email writing assistent. I want you to just customize the email template based on the data nothing else so that i can directly put it to the mail content section.\nMake sure it is gramatically correct. make it look professional. "
+            },
+            {
+              "content": "=I want you to customixe email based on the provided info. just write the email contends so dont specify anything. \n\nfirst name : {{ $json['First Name : '] }}\nlast name : {{ $json['Last Name : '] }}\ne-mail : {{ $json['E-mail : '] }}\nphone number : {{ $json['Phone Number :'] }}\nwork description : {{ $json['Work Description : '] }}\nsite type : {{ $json['Site Type :'] }}\ntimeline : {{ $json['Timeline : '] }}\n\n\n\nE-mail template:\n\nHello (First name)\n\nHow are you? I just received your onboarding form's data. It seems you want use to make you (paraphrased Work description). You're preferring the site to be (side type) and within (timeline).\n\nCould you please confirm your phone number (Phone Number) one last time?\n\nThanks\nNSS\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        448
+      ],
+      "id": "0139ec9c-fda1-48e4-bba5-43892aadd4aa",
+      "name": "Message a model",
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "Pmuc8hRBjPyUHlLf",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('On form submission').item.json['E-mail : '] }}",
+        "subject": "Re: Your onboarding form",
+        "emailType": "text",
+        "message": "={{ $json.output[0].content[0].text }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        448
+      ],
+      "id": "bd9ecd85-1309-42f3-bb44-fb43844c5398",
+      "name": "Send a message1",
+      "webhookId": "9270c220-85e3-4e5c-8a3c-10ce618fef12",
+      "notesInFlow": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ctNY1ZN8Oc8Tpz4z",
+          "name": "SaM Gaming"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 125
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        336,
+        448
+      ],
+      "id": "e833a82f-8c83-4b42-9440-ebf1b4cdf17c",
+      "name": "Wait",
+      "webhookId": "50a7c7ce-ef97-45f5-b80d-8f7c2c7e4e5c"
+    },
+    {
+      "parameters": {
+        "content": "## Calender Booking -> Update -> CRM\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/components/sticky-notes/)",
+        "height": 96,
+        "width": 432
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        688
+      ],
+      "id": "0f139116-ccad-4e18-a46b-c981efed12a4",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "formId": "KYGbdD"
+      },
+      "type": "n8n-nodes-tallyforms.tallyTrigger",
+      "typeVersion": 2,
+      "position": [
+        -256,
+        864
+      ],
+      "id": "c76276c1-b4d8-4070-95d4-c8a2e650b69b",
+      "name": "Tally Trigger",
+      "webhookId": "b7e6d8fd-6705-4448-a919-b3e0ed67de5a",
+      "credentials": {
+        "tallyApi": {
+          "id": "wV0ZSccRtG8Cme2H",
+          "name": "Tally account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are writing cold outreach emails to candidates. \n\nGuidelines:\n1. Your tone of voice should be \"casual bar conversation\" and very spartan. No fancy language, corporate jargon, or fake enthusiasm.\n2. Look for plausible (but vague) connections wherever possible using their provided LinkedIn data.\n3. Do not just repeat data from the LinkedIn profile verbatim. Paraphrase everything so it looks like a human wrote it quickly.\n4. Make sure the subject line is non-capitalized, even if it's grammatically incorrect. This makes the email seem human.\n5. Respond ONLY in valid JSON using this exact format to map to our database:\n\n{\"Subject\":\"\", \"Icebreaker\":\"\", \"CompiledEmail\":\"\", \"CallToAction\":\"\", \"Postscript\":\"\"}"
+            },
+            {
+              "content": "=Candidate Data:\n- First Name: {{ $json['First Name'] }}\n- Last Name: {{ $json['Last Name'] }}\n- Title: {{ $json['Title'] }}\n- Company: {{ $json['Company Name'] }}\n- Summary: {{ $json['Summary'] }}\n- Description: {{ $json['Description on LinkedIn profile'] }}\n\nGenerate the JSON object following the strict guidelines. \n\nFor the \"CompiledEmail\" key, assemble the text as follows:\nStart with \"hey [First Name],\" \nAdd the Icebreaker. \nAdd 1-2 spartan sentences pitching an engineering transition to our team. \nAdd the CallToAction. \nSign off with \"cheers, [Your Name]\". \nAdd the Postscript. \nUse \\n for line breaks. Do not capitalize the first letter of sentences if it helps sell the casual tone."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        -64,
+        864
+      ],
+      "id": "72d2339c-3654-48f9-9924-65a4ba5e88d1",
+      "name": "Message a model1",
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "Pmuc8hRBjPyUHlLf",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Tally Trigger').item.json.question_qOLl8g.value }}",
+        "subject": "Re: Your onboarding form",
+        "emailType": "text",
+        "message": "={{ $('Message a model1').item.json.output[0].content[0].text }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        496,
+        864
+      ],
+      "id": "63ffcd3a-5b66-429f-ad51-c4041c7d5e4a",
+      "name": "Send a message2",
+      "webhookId": "9270c220-85e3-4e5c-8a3c-10ce618fef12",
+      "notesInFlow": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ctNY1ZN8Oc8Tpz4z",
+          "name": "SaM Gaming"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        272,
+        864
+      ],
+      "id": "4f150a66-c7c6-4e99-8848-01527fae2c84",
+      "name": "Wait1",
+      "webhookId": "50a7c7ce-ef97-45f5-b80d-8f7c2c7e4e5c"
+    },
+    {
+      "parameters": {
+        "content": "## Foundational Concept \n",
+        "height": 80,
+        "width": 304
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        1104
+      ],
+      "id": "a7e06148-05d4-4ff5-b226-645ef56ca6ba",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        1248
+      ],
+      "id": "32896d10-45e7-4e07-b7f4-a0cf25f47dfe",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "17V7LVrflcKAfLC5tz6h-n5wQyNyAYHLjQQuXwJBf19g",
+          "mode": "list",
+          "cachedResultName": "n8n practice spreadsheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/17V7LVrflcKAfLC5tz6h-n5wQyNyAYHLjQQuXwJBf19g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/17V7LVrflcKAfLC5tz6h-n5wQyNyAYHLjQQuXwJBf19g/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -16,
+        1248
+      ],
+      "id": "b7f1fc3a-68b3-45a0-8818-679af31d705f",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "u5A0oX6vPWD9UlDR",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-pro",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-pro"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You are a helpful, intelligent writing assistant.\n",
+              "role": "model"
+            },
+            {
+              "content": "\nGuidelines:\n1. Your tone of voice should be \"casual bar conversation\" and very spartan. No fancy language, corporate jargon, or fake enthusiasm.\n2. Look for plausible (but vague) connections wherever possible using their provided LinkedIn data.\n3. Do not just repeat data from the LinkedIn profile verbatim. Paraphrase everything so it looks like a human wrote it quickly.\n4. Make sure the subject line is non-capitalized, even if it's grammatically incorrect. This makes the email seem human.\n5. Respond ONLY in valid JSON using this exact format to map to our database:\n\n{\"Subject\":\"\", \"Icebreaker\":\"\", \"CompiledEmail\":\"\", \"CallToAction\":\"\", \"Postscript\":\"\"}\n\n\n\n"
+            },
+            {
+              "content": "=Candidate Data:\n- First Name: {{ $json['First Name'] }}\n- Last Name: {{ $json['Last Name'] }}\n- Title: {{ $json['Title'] }}\n- Company: {{ $json['Company Name'] }}\n- Summary: {{ $json['Summary'] }}\n- Description: {{ $json['Description on LinkedIn profile'] }}\n\nBased on the candidate data. i want you to generate Subject, Icebreaker, ElevatorPitch, CallToAction and Postscript. \n\nhere are the remplate i want you to follow:\n\nSubject : \"Hey {name} think i have something for you re: {UniquethingAboutThemOrTheCompany}\"\n\nIcebreaker : \"I know you are working on {thing} and I've been following {similarThings} for a while. So i figure having chat make sence.\"\n\nElevatorPitch : \"i think i can add ~5k/mon to {theirBusiness} with few automated systems\"\n\nCallToAction : \"I just did this for a very similar {industry} company and we hit $28,520 in few months they do {relatedThings} so I am very confident I can duplicage this a minimum. Would be 100% risk free and I'd gaurantee at least 20 ppts or you pay nothing. \"\n\nPpstscript : even though we just chat I'd love to hear what your doing with {things}\n\n"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        192,
+        1248
+      ],
+      "id": "b04274ef-b945-450f-881c-c1207fd45084",
+      "name": "Message a model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Ywg01zir0qm5M2PI",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "17V7LVrflcKAfLC5tz6h-n5wQyNyAYHLjQQuXwJBf19g",
+          "mode": "list",
+          "cachedResultName": "n8n practice spreadsheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/17V7LVrflcKAfLC5tz6h-n5wQyNyAYHLjQQuXwJBf19g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/17V7LVrflcKAfLC5tz6h-n5wQyNyAYHLjQQuXwJBf19g/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $('Get row(s) in sheet').item.json.Email }}",
+            "Full Name": "={{ $('Get row(s) in sheet').item.json['Full Name'] }}",
+            "First Name": "={{ $('Get row(s) in sheet').item.json['First Name'] }}",
+            "Last Name": "={{ $('Get row(s) in sheet').item.json['Last Name'] }}",
+            "Title": "={{ $('Get row(s) in sheet').item.json.Title }}",
+            "Company Name": "={{ $('Get row(s) in sheet').item.json['Company Name'] }}",
+            "Profile URL": "={{ $('Get row(s) in sheet').item.json['Profile URL'] }}",
+            "Summary": "={{ $('Get row(s) in sheet').item.json.Summary }}",
+            "Description on LinkedIn profile": "={{ $('Get row(s) in sheet').item.json['Description on LinkedIn profile'] }}",
+            "Subject": "={{ $('Get row(s) in sheet').item.json.Subject }}",
+            "Icebreaker": "={{ $('Get row(s) in sheet').item.json.Icebreaker }}",
+            "ElevatorPitch": "={{ $('Get row(s) in sheet').item.json.ElevatorPitch }}",
+            "CallToAction": "={{ $('Get row(s) in sheet').item.json.CallToAction }}",
+            "Postscript": "={{ $('Get row(s) in sheet').item.json.Postscript }}"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Full Name",
+              "displayName": "Full Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "First Name",
+              "displayName": "First Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Last Name",
+              "displayName": "Last Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company Name",
+              "displayName": "Company Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Profile URL",
+              "displayName": "Profile URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Description on LinkedIn profile",
+              "displayName": "Description on LinkedIn profile",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subject",
+              "displayName": "Subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Icebreaker",
+              "displayName": "Icebreaker",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ElevatorPitch",
+              "displayName": "ElevatorPitch",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CallToAction",
+              "displayName": "CallToAction",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Postscript",
+              "displayName": "Postscript",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        544,
+        1248
+      ],
+      "id": "50c660f3-dc76-4996-8504-8c30984d66a0",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "u5A0oX6vPWD9UlDR",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Message a model": [
+      {
+        "json": {
+          "output": [
+            {
+              "id": "msg_012a728e8e9ba30d006a23c5e63748819b9f9c5d3eb6836c3a",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "Hello Nadim,\n\nI hope you’re well. I just received your onboarding form. It looks like you’d like us to build a multimodal automated Retrieval-Augmented Generation (RAG) system. You prefer the site to be luxurious, and the project timeline is 1–3 weeks.\n\nCould you please confirm your phone number, 017 4444 5555, one last time?\n\nThanks,\nNSS"
+                }
+              ],
+              "role": "assistant"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "On form submission": [
+      {
+        "json": {
+          "First Name : ": "Nadim",
+          "Last Name : ": "Tushar",
+          "E-mail : ": "www.nutonsami@gmail.com",
+          "Phone Number :": "017 4444 5555",
+          "Work Description : ": "Multi modal automated rag system",
+          "Site Type :": "Luxurious",
+          "Timeline : ": "1-3 weeks",
+          "submittedAt": "2026-06-06T13:00:03.510+06:00",
+          "formMode": "test"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "Message a model1": [
+      {
+        "json": {
+          "output": [
+            {
+              "id": "msg_01c3dd9f838f0d7a006a2975f355b88197bda701fbb893bc61",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "Hello Liam,\n\nI hope you're doing well.\n\nCould you please confirm your message: \"I am from Tally. Congratulations — your n8n operation is working.\"?\n\nThanks,\nNSS\n\nLiam Harrison\n+1 (678) 214-9053\n2022-3-60-063@std.ewubd.edu"
+                }
+              ],
+              "role": "assistant"
+            }
+          ]
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "Tally Trigger": [
+      {
+        "json": {
+          "id": "Z9V4jzo",
+          "formId": "KYGbdD",
+          "formName": "N8N",
+          "respondentId": "javJ2qY",
+          "createdAt": "2026-06-10T14:30:55.000Z",
+          "submissionPdfUrl": "https://api.tally.so/forms/KYGbdD/submissions/Z9V4jzo/pdf?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJtaXNzaW9uSWQiOiJaOVY0anpvIiwiZm9ybUlkIjoiS1lHYmREIiwiaWF0IjoxNzgxMTAxODU1fQ.W2w2o81kdlqgD1b1Y0Gbngb53mm_0IccL-1hwyF318U&signature=d84edca7975e81fa12e391b97f055db75dc7e5b9618c3e26bf73b5239382cfe8",
+          "submissionPreviewUrl": "https://tally.so/forms/KYGbdD/submissions/Z9V4jzo/preview?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJtaXNzaW9uSWQiOiJaOVY0anpvIiwiZm9ybUlkIjoiS1lHYmREIiwiaWF0IjoxNzgxMTAxODU1fQ.W2w2o81kdlqgD1b1Y0Gbngb53mm_0IccL-1hwyF318U&signature=d84edca7975e81fa12e391b97f055db75dc7e5b9618c3e26bf73b5239382cfe8",
+          "question_qOLl8g": {
+            "label": "Email",
+            "value": "2022-3-60-063@std.ewubd.edu",
+            "type": "INPUT_EMAIL"
+          },
+          "question_Qd1QNX": {
+            "label": "Message",
+            "value": "i am from tally. Congrads your n8n operation is working. ",
+            "type": "TEXTAREA"
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "Get row(s) in sheet": [
+      {
+        "json": {
+          "row_number": 2,
+          "Full Name": "Sarah Jenkins",
+          "First Name": "Sarah",
+          "Last Name": "Jenkins",
+          "Email": "sarah.jenkins@techflow.io",
+          "Title": "Senior Marketing Manager",
+          "Company Name": "TechFlowww",
+          "Profile URL": "linkedin.com/in/sarahjenkins",
+          "Summary": "B2B Marketing specialist with 8 years experience.",
+          "Description on LinkedIn profile": "Passionate about driving growth through data-driven campaigns.",
+          "Subject": "",
+          "Icebreaker": "",
+          "ElevatorPitch": "",
+          "CallToAction": "",
+          "Postscript": ""
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      },
+      {
+        "json": {
+          "row_number": 3,
+          "Full Name": "David Chen",
+          "First Name": "David",
+          "Last Name": "Chen",
+          "Email": "www.nutonsami@gmail.com",
+          "Title": "Director of Sales",
+          "Company Name": "Tensorrrr",
+          "Profile URL": "linkedin.com/in/davidchensales",
+          "Summary": "Sales leader focusing on enterprise SaaS.",
+          "Description on LinkedIn profile": "Building high-performing sales teams and scaling revenue.",
+          "Subject": "",
+          "Icebreaker": "",
+          "ElevatorPitch": "",
+          "CallToAction": "",
+          "Postscript": ""
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      },
+      {
+        "json": {
+          "row_number": 4,
+          "Full Name": "Elena Rodriguez",
+          "First Name": "Elena",
+          "Last Name": "Rodriguez",
+          "Email": "elena@dataworks.co",
+          "Title": "Lead Data Analyst",
+          "Company Name": "DataWorksss",
+          "Profile URL": "linkedin.com/in/elenarodriguezdata",
+          "Summary": "Expert in predictive modeling and BI tools.",
+          "Description on LinkedIn profile": "Helping companies make sense of their complex datasets.",
+          "Subject": "",
+          "Icebreaker": "",
+          "ElevatorPitch": "",
+          "CallToAction": "",
+          "Postscript": ""
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tally Trigger": {
+      "main": [
+        [
+          {
+            "node": "Message a model1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Message a model3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model3": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "71adfd73-2914-41d0-acc5-8510b5b80771",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "638e7122de53486a85d006302b04e48641880fb69342c05b0b48cb243d5aa0df"
+  },
+  "nodeGroups": [],
+  "id": "eUf7ESeUHsDaEMXf",
+  "tags": []
+}
