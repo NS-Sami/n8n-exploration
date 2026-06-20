@@ -10,7 +10,7 @@ I'm a CSE student building toward an AI/ML engineering career, with a focus on L
 
 | Folder | Contents |
 |---|---|
-| `notes/` | Concept notes, organized by topic as I progress through the course (see `notes/01-fundamentals.md`, `notes/02-forms-wait-email.md`, etc.) |
+| `notes/` | Concept notes, organized by topic as I progress through the course (see `notes/01-fundamentals.md`, `notes/02-forms-wait-email.md`, `notes/03-web-scraping-ai-extraction.md`, etc.) |
 | `workflows/` | Exported JSON files for each workflow I build, so they can be re-imported into any n8n instance |
 | `BUGLOG.md` | Real issues I hit, what caused them, and how I fixed them |
 
@@ -33,6 +33,7 @@ To import a workflow:
 - [x] Structured output parsing (Code node + Structured Output Parser)
 - [x] Wait nodes / delayed actions
 - [x] Email automation (send vs. draft)
+- [x] Web scraping (HTTP Request + HTML extraction) → AI structured analysis
 - [ ] AI Agents
 - [ ] Multi-step automation chains
 - [ ] Error handling / retries
@@ -47,6 +48,8 @@ To import a workflow:
 - n8n native form triggers
 - Wait node
 - Gmail node (send + draft)
+- HTTP Request node
+- HTML extraction node
 - Structured Output Parser
 - JavaScript (Code nodes)
 

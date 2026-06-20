@@ -8,10 +8,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        32,
-        -224
+        -208,
+        272
       ],
-      "id": "10576de6-e5c3-4f69-84b6-fbde59cd07ed",
+      "id": "97e7bfde-db0b-4c07-8a4f-c78c04615f86",
       "name": "Sticky Note"
     },
     {
@@ -27,17 +27,17 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        176,
-        -16
+        -64,
+        480
       ],
-      "id": "15673241-c312-4045-aeca-a7569d14f864",
+      "id": "b45f1df3-577c-45d0-8c23-bf8865e420b5",
       "name": "Send a message",
       "webhookId": "9270c220-85e3-4e5c-8a3c-10ce618fef12",
       "notesInFlow": false,
       "credentials": {
         "gmailOAuth2": {
-          "id": "ctNY1ZN8Oc8Tpz4z",
-          "name": "SaM Gaming"
+          "id": "vHUGKaQS1SMykZin",
+          "name": "Gmail OAuth2 API"
         }
       }
     },
@@ -49,10 +49,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -16,
-        192
+        -256,
+        688
       ],
-      "id": "7b4f2f46-8986-42fb-9245-d3a47158836c",
+      "id": "ec14484a-6466-4316-a0d5-44e63ff5f2d6",
       "name": "Sticky Note1"
     },
     {
@@ -119,12 +119,12 @@
       "type": "n8n-nodes-base.formTrigger",
       "typeVersion": 2.5,
       "position": [
-        -224,
-        448
+        -464,
+        944
       ],
-      "id": "3daef14e-df1b-4139-8c2f-5a17e3a678e7",
+      "id": "1402f45c-bac2-4ee7-8915-d4dc72e59aab",
       "name": "On form submission",
-      "webhookId": "caf90bcc-1b2b-451e-86c3-e59f5427de32"
+      "webhookId": "1141a336-f091-4ced-9dad-642cd40926f1"
     },
     {
       "parameters": {
@@ -151,18 +151,12 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2.3,
       "position": [
-        0,
-        448
+        -240,
+        944
       ],
-      "id": "0139ec9c-fda1-48e4-bba5-43892aadd4aa",
+      "id": "57b94261-2f05-455a-987b-a89d92041676",
       "name": "Message a model",
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "Pmuc8hRBjPyUHlLf",
-          "name": "n8n free OpenAI API credits"
-        }
-      }
+      "retryOnFail": true
     },
     {
       "parameters": {
@@ -177,17 +171,17 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        560,
-        448
+        320,
+        944
       ],
-      "id": "bd9ecd85-1309-42f3-bb44-fb43844c5398",
+      "id": "3ed686a2-a64b-4231-92d4-43a8d11895a2",
       "name": "Send a message1",
       "webhookId": "9270c220-85e3-4e5c-8a3c-10ce618fef12",
       "notesInFlow": false,
       "credentials": {
         "gmailOAuth2": {
-          "id": "ctNY1ZN8Oc8Tpz4z",
-          "name": "SaM Gaming"
+          "id": "vHUGKaQS1SMykZin",
+          "name": "Gmail OAuth2 API"
         }
       }
     },
@@ -198,47 +192,27 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        336,
-        448
+        96,
+        944
       ],
-      "id": "e833a82f-8c83-4b42-9440-ebf1b4cdf17c",
+      "id": "8331452a-6233-45d9-9c96-d9e7d35dfee8",
       "name": "Wait",
       "webhookId": "50a7c7ce-ef97-45f5-b80d-8f7c2c7e4e5c"
     },
     {
       "parameters": {
         "content": "## Calender Booking -> Update -> CRM\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/components/sticky-notes/)",
-        "height": 96,
+        "height": 80,
         "width": 432
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -32,
-        688
+        -272,
+        1184
       ],
-      "id": "0f139116-ccad-4e18-a46b-c981efed12a4",
+      "id": "0ec63f34-b57f-42f3-b99d-da8ce5a68343",
       "name": "Sticky Note2"
-    },
-    {
-      "parameters": {
-        "formId": "KYGbdD"
-      },
-      "type": "n8n-nodes-tallyforms.tallyTrigger",
-      "typeVersion": 2,
-      "position": [
-        -256,
-        864
-      ],
-      "id": "c76276c1-b4d8-4070-95d4-c8a2e650b69b",
-      "name": "Tally Trigger",
-      "webhookId": "b7e6d8fd-6705-4448-a919-b3e0ed67de5a",
-      "credentials": {
-        "tallyApi": {
-          "id": "wV0ZSccRtG8Cme2H",
-          "name": "Tally account"
-        }
-      }
     },
     {
       "parameters": {
@@ -265,18 +239,12 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2.3,
       "position": [
-        -64,
-        864
+        -304,
+        1360
       ],
-      "id": "72d2339c-3654-48f9-9924-65a4ba5e88d1",
+      "id": "5e97e640-576c-4a49-8ea8-762de4d73ff8",
       "name": "Message a model1",
-      "retryOnFail": true,
-      "credentials": {
-        "openAiApi": {
-          "id": "Pmuc8hRBjPyUHlLf",
-          "name": "n8n free OpenAI API credits"
-        }
-      }
+      "retryOnFail": true
     },
     {
       "parameters": {
@@ -291,17 +259,17 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.2,
       "position": [
-        496,
-        864
+        256,
+        1360
       ],
-      "id": "63ffcd3a-5b66-429f-ad51-c4041c7d5e4a",
+      "id": "50cbadff-886e-40fe-b9ef-509b6fd4e6a1",
       "name": "Send a message2",
       "webhookId": "9270c220-85e3-4e5c-8a3c-10ce618fef12",
       "notesInFlow": false,
       "credentials": {
         "gmailOAuth2": {
-          "id": "ctNY1ZN8Oc8Tpz4z",
-          "name": "SaM Gaming"
+          "id": "vHUGKaQS1SMykZin",
+          "name": "Gmail OAuth2 API"
         }
       }
     },
@@ -310,10 +278,10 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        272,
-        864
+        32,
+        1360
       ],
-      "id": "4f150a66-c7c6-4e99-8848-01527fae2c84",
+      "id": "74b6df61-9f21-484c-90f5-3b6d86595e31",
       "name": "Wait1",
       "webhookId": "50a7c7ce-ef97-45f5-b80d-8f7c2c7e4e5c"
     },
@@ -326,10 +294,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -16,
-        1104
+        -256,
+        1600
       ],
-      "id": "a7e06148-05d4-4ff5-b226-645ef56ca6ba",
+      "id": "dc267eec-186f-46f3-8f68-847c40dedcc6",
       "name": "Sticky Note3"
     },
     {
@@ -337,10 +305,10 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -240,
-        1248
+        -480,
+        1744
       ],
-      "id": "32896d10-45e7-4e07-b7f4-a0cf25f47dfe",
+      "id": "5a833d28-2ce6-43c4-9826-d7a828c3d5f1",
       "name": "When clicking ‘Execute workflow’"
     },
     {
@@ -364,14 +332,14 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -16,
-        1248
+        -256,
+        1744
       ],
-      "id": "b7f1fc3a-68b3-45a0-8818-679af31d705f",
+      "id": "108c4492-a799-4972-917e-9170ba9d9ff8",
       "name": "Get row(s) in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "u5A0oX6vPWD9UlDR",
+          "id": "zqChsD9mDItoJsXo",
           "name": "Google Sheets OAuth2 API"
         }
       }
@@ -380,9 +348,9 @@
       "parameters": {
         "modelId": {
           "__rl": true,
-          "value": "models/gemini-2.5-pro",
+          "value": "models/gemini-2.5-flash",
           "mode": "list",
-          "cachedResultName": "models/gemini-2.5-pro"
+          "cachedResultName": "models/gemini-2.5-flash"
         },
         "messages": {
           "values": [
@@ -391,7 +359,7 @@
               "role": "model"
             },
             {
-              "content": "\nGuidelines:\n1. Your tone of voice should be \"casual bar conversation\" and very spartan. No fancy language, corporate jargon, or fake enthusiasm.\n2. Look for plausible (but vague) connections wherever possible using their provided LinkedIn data.\n3. Do not just repeat data from the LinkedIn profile verbatim. Paraphrase everything so it looks like a human wrote it quickly.\n4. Make sure the subject line is non-capitalized, even if it's grammatically incorrect. This makes the email seem human.\n5. Respond ONLY in valid JSON using this exact format to map to our database:\n\n{\"Subject\":\"\", \"Icebreaker\":\"\", \"CompiledEmail\":\"\", \"CallToAction\":\"\", \"Postscript\":\"\"}\n\n\n\n"
+              "content": "=\nGuidelines:\n1. Your tone of voice should be \"casual bar conversation\" and very spartan. No fancy language, corporate jargon, or fake enthusiasm.\n2. Look for plausible (but vague) connections wherever possible using their provided LinkedIn data.\n3. Do not just repeat data from the LinkedIn profile verbatim. Paraphrase everything so it looks like a human wrote it quickly.\n4. Make sure the subject line is non-capitalized, even if it's grammatically incorrect. This makes the email seem human.\n5. Respond ONLY in valid JSON using this exact format to map to our database:\n\n{\"Subject\":\"\", \"Icebreaker\":\"\", \"ElevatorPitch\":\"\", \"CallToAction\":\"\", \"Postscript\":\"\"}\n\n\n\n"
             },
             {
               "content": "=Candidate Data:\n- First Name: {{ $json['First Name'] }}\n- Last Name: {{ $json['Last Name'] }}\n- Title: {{ $json['Title'] }}\n- Company: {{ $json['Company Name'] }}\n- Summary: {{ $json['Summary'] }}\n- Description: {{ $json['Description on LinkedIn profile'] }}\n\nBased on the candidate data. i want you to generate Subject, Icebreaker, ElevatorPitch, CallToAction and Postscript. \n\nhere are the remplate i want you to follow:\n\nSubject : \"Hey {name} think i have something for you re: {UniquethingAboutThemOrTheCompany}\"\n\nIcebreaker : \"I know you are working on {thing} and I've been following {similarThings} for a while. So i figure having chat make sence.\"\n\nElevatorPitch : \"i think i can add ~5k/mon to {theirBusiness} with few automated systems\"\n\nCallToAction : \"I just did this for a very similar {industry} company and we hit $28,520 in few months they do {relatedThings} so I am very confident I can duplicage this a minimum. Would be 100% risk free and I'd gaurantee at least 20 ppts or you pay nothing. \"\n\nPpstscript : even though we just chat I'd love to hear what your doing with {things}\n\n"
@@ -405,14 +373,14 @@
       "type": "@n8n/n8n-nodes-langchain.googleGemini",
       "typeVersion": 1.2,
       "position": [
-        192,
-        1248
+        -32,
+        1744
       ],
-      "id": "b04274ef-b945-450f-881c-c1207fd45084",
+      "id": "5bb15508-0752-4aa2-a09a-3e9e75dc8b80",
       "name": "Message a model3",
       "credentials": {
         "googlePalmApi": {
-          "id": "Ywg01zir0qm5M2PI",
+          "id": "wo6ePzbDuV1SDYMi",
           "name": "Google Gemini(PaLM) Api account"
         }
       }
@@ -446,11 +414,11 @@
             "Profile URL": "={{ $('Get row(s) in sheet').item.json['Profile URL'] }}",
             "Summary": "={{ $('Get row(s) in sheet').item.json.Summary }}",
             "Description on LinkedIn profile": "={{ $('Get row(s) in sheet').item.json['Description on LinkedIn profile'] }}",
-            "Subject": "={{ $('Get row(s) in sheet').item.json.Subject }}",
-            "Icebreaker": "={{ $('Get row(s) in sheet').item.json.Icebreaker }}",
-            "ElevatorPitch": "={{ $('Get row(s) in sheet').item.json.ElevatorPitch }}",
-            "CallToAction": "={{ $('Get row(s) in sheet').item.json.CallToAction }}",
-            "Postscript": "={{ $('Get row(s) in sheet').item.json.Postscript }}"
+            "Subject": "={{ $json.Subject }}",
+            "Icebreaker": "={{ $json.Icebreaker }}",
+            "ElevatorPitch": "={{ $json.ElevatorPitch }}",
+            "CallToAction": "={{ $json.CallToAction }}",
+            "Postscript": "={{ $json.Postscript }}"
           },
           "matchingColumns": [
             "Email"
@@ -603,20 +571,75 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        544,
-        1248
+        528,
+        1744
       ],
-      "id": "50c660f3-dc76-4996-8504-8c30984d66a0",
+      "id": "95d5463d-4768-4e4d-8915-1e3f28b62f09",
       "name": "Update row in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "u5A0oX6vPWD9UlDR",
+          "id": "zqChsD9mDItoJsXo",
           "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const rawText = $json.content.parts[0].text;\n\nconst cleaned = rawText.replace(/```json|```/g, '').trim();\n\nconst parsed = JSON.parse(cleaned);\n\nreturn { json: parsed };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        1744
+      ],
+      "id": "4e4c6b89-597f-4970-b5ab-58087008558a",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "={{ $json.Subject }}",
+        "message": "={{ $json.Icebreaker }}.\n\n{{ $json.ElevatorPitch }}.\n\n{{ $json.CallToAction }}.\n\nps: {{ $json.Postscript }}",
+        "options": {
+          "sendTo": "={{ $json.Email }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        1744
+      ],
+      "id": "1d6cd7ed-24ec-4689-95f3-fd63d7a7209c",
+      "name": "Create a draft",
+      "webhookId": "9270c220-85e3-4e5c-8a3c-10ce618fef12",
+      "notesInFlow": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "G7Nt7r8BqilAC6o5",
+          "name": "Gmail OAuth2 API"
         }
       }
     }
   ],
   "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "First Name : ": "Nadim",
+          "Last Name : ": "Tushar",
+          "E-mail : ": "www.nutonsami@gmail.com",
+          "Phone Number :": "017 4444 5555",
+          "Work Description : ": "Multi modal automated rag system",
+          "Site Type :": "Luxurious",
+          "Timeline : ": "1-3 weeks",
+          "submittedAt": "2026-06-06T13:00:03.510+06:00",
+          "formMode": "test"
+        }
+      }
+    ],
     "Message a model": [
       {
         "json": {
@@ -636,27 +659,6 @@
               "role": "assistant"
             }
           ]
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      }
-    ],
-    "On form submission": [
-      {
-        "json": {
-          "First Name : ": "Nadim",
-          "Last Name : ": "Tushar",
-          "E-mail : ": "www.nutonsami@gmail.com",
-          "Phone Number :": "017 4444 5555",
-          "Work Description : ": "Multi modal automated rag system",
-          "Site Type :": "Luxurious",
-          "Timeline : ": "1-3 weeks",
-          "submittedAt": "2026-06-06T13:00:03.510+06:00",
-          "formMode": "test"
-        },
-        "pairedItem": {
-          "item": 0
         }
       }
     ],
@@ -679,103 +681,6 @@
               "role": "assistant"
             }
           ]
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      }
-    ],
-    "Tally Trigger": [
-      {
-        "json": {
-          "id": "Z9V4jzo",
-          "formId": "KYGbdD",
-          "formName": "N8N",
-          "respondentId": "javJ2qY",
-          "createdAt": "2026-06-10T14:30:55.000Z",
-          "submissionPdfUrl": "https://api.tally.so/forms/KYGbdD/submissions/Z9V4jzo/pdf?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJtaXNzaW9uSWQiOiJaOVY0anpvIiwiZm9ybUlkIjoiS1lHYmREIiwiaWF0IjoxNzgxMTAxODU1fQ.W2w2o81kdlqgD1b1Y0Gbngb53mm_0IccL-1hwyF318U&signature=d84edca7975e81fa12e391b97f055db75dc7e5b9618c3e26bf73b5239382cfe8",
-          "submissionPreviewUrl": "https://tally.so/forms/KYGbdD/submissions/Z9V4jzo/preview?accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJtaXNzaW9uSWQiOiJaOVY0anpvIiwiZm9ybUlkIjoiS1lHYmREIiwiaWF0IjoxNzgxMTAxODU1fQ.W2w2o81kdlqgD1b1Y0Gbngb53mm_0IccL-1hwyF318U&signature=d84edca7975e81fa12e391b97f055db75dc7e5b9618c3e26bf73b5239382cfe8",
-          "question_qOLl8g": {
-            "label": "Email",
-            "value": "2022-3-60-063@std.ewubd.edu",
-            "type": "INPUT_EMAIL"
-          },
-          "question_Qd1QNX": {
-            "label": "Message",
-            "value": "i am from tally. Congrads your n8n operation is working. ",
-            "type": "TEXTAREA"
-          }
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      }
-    ],
-    "Get row(s) in sheet": [
-      {
-        "json": {
-          "row_number": 2,
-          "Full Name": "Sarah Jenkins",
-          "First Name": "Sarah",
-          "Last Name": "Jenkins",
-          "Email": "sarah.jenkins@techflow.io",
-          "Title": "Senior Marketing Manager",
-          "Company Name": "TechFlowww",
-          "Profile URL": "linkedin.com/in/sarahjenkins",
-          "Summary": "B2B Marketing specialist with 8 years experience.",
-          "Description on LinkedIn profile": "Passionate about driving growth through data-driven campaigns.",
-          "Subject": "",
-          "Icebreaker": "",
-          "ElevatorPitch": "",
-          "CallToAction": "",
-          "Postscript": ""
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      },
-      {
-        "json": {
-          "row_number": 3,
-          "Full Name": "David Chen",
-          "First Name": "David",
-          "Last Name": "Chen",
-          "Email": "www.nutonsami@gmail.com",
-          "Title": "Director of Sales",
-          "Company Name": "Tensorrrr",
-          "Profile URL": "linkedin.com/in/davidchensales",
-          "Summary": "Sales leader focusing on enterprise SaaS.",
-          "Description on LinkedIn profile": "Building high-performing sales teams and scaling revenue.",
-          "Subject": "",
-          "Icebreaker": "",
-          "ElevatorPitch": "",
-          "CallToAction": "",
-          "Postscript": ""
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      },
-      {
-        "json": {
-          "row_number": 4,
-          "Full Name": "Elena Rodriguez",
-          "First Name": "Elena",
-          "Last Name": "Rodriguez",
-          "Email": "elena@dataworks.co",
-          "Title": "Lead Data Analyst",
-          "Company Name": "DataWorksss",
-          "Profile URL": "linkedin.com/in/elenarodriguezdata",
-          "Summary": "Expert in predictive modeling and BI tools.",
-          "Description on LinkedIn profile": "Helping companies make sense of their complex datasets.",
-          "Subject": "",
-          "Icebreaker": "",
-          "ElevatorPitch": "",
-          "CallToAction": "",
-          "Postscript": ""
-        },
-        "pairedItem": {
-          "item": 0
         }
       }
     ]
@@ -836,17 +741,6 @@
         ]
       ]
     },
-    "Tally Trigger": {
-      "main": [
-        [
-          {
-            "node": "Message a model1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "When clicking ‘Execute workflow’": {
       "main": [
         [
@@ -873,7 +767,29 @@
       "main": [
         [
           {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
             "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Create a draft",
             "type": "main",
             "index": 0
           }
@@ -884,14 +800,14 @@
   "active": false,
   "settings": {
     "executionOrder": "v1",
-    "binaryMode": "separate"
+    "binaryMode": "separate",
+    "availableInMCP": false
   },
-  "versionId": "71adfd73-2914-41d0-acc5-8510b5b80771",
+  "versionId": "e19f280e-445f-4f39-8d49-2a41b633752c",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "638e7122de53486a85d006302b04e48641880fb69342c05b0b48cb243d5aa0df"
+    "instanceId": "f99fbbd6fe663db28cdbdbb0b59dd1c687fc71b61efc2b434ee4f576b387a0ca"
   },
   "nodeGroups": [],
-  "id": "eUf7ESeUHsDaEMXf",
+  "id": "h3j4y4gnGOh3tEHJ",
   "tags": []
 }
