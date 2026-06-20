@@ -10,7 +10,7 @@ I'm a CSE student building toward an AI/ML engineering career, with a focus on L
 
 | Folder | Contents |
 |---|---|
-| `notes/` | Concept notes, organized by topic as I progress through the course (see `notes/01-fundamentals.md`, `notes/02-forms-wait-email.md`, `notes/03-web-scraping-ai-extraction.md`, etc.) |
+| `notes/` | Concept notes, organized by topic as I progress through the course (see `notes/01-fundamentals.md`, `notes/02-forms-wait-email.md`, `notes/03-web-scraping-ai-extraction.md`, `notes/04-ai-agents-tools-memory.md`, etc.) |
 | `workflows/` | Exported JSON files for each workflow I build, so they can be re-imported into any n8n instance |
 | `BUGLOG.md` | Real issues I hit, what caused them, and how I fixed them |
 
@@ -34,7 +34,7 @@ To import a workflow:
 - [x] Wait nodes / delayed actions
 - [x] Email automation (send vs. draft)
 - [x] Web scraping (HTTP Request + HTML extraction) → AI structured analysis
-- [ ] AI Agents
+- [x] AI Agents
 - [ ] Multi-step automation chains
 - [ ] Error handling / retries
 - [ ] Deployment considerations
@@ -51,6 +51,8 @@ To import a workflow:
 - HTTP Request node
 - HTML extraction node
 - Structured Output Parser
+- AI Agent node (tools, memory)
+- Google Calendar node (as AI tool)
 - JavaScript (Code nodes)
 
 ## License

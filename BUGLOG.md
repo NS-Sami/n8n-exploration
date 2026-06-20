@@ -71,6 +71,30 @@ Key differences in per-item mode:
 
 ---
 
+## 004 — AI Agent claims it has no tool access, despite a working tool being connected
+
+**Context:** Built an AI Agent-based chat assistant with a "Get many events in Google Calendar" tool connected, to answer questions like "what am I doing on 24 June 2026."
+
+**Symptom:** Agent replied: *"I am sorry, but I cannot tell you what you are doing on June 24, 2026. I do not have access to your personal calendar information to look up specific events."* — despite the Calendar tool being correctly configured and connected.
+
+**Diagnosis:** Checked the Logs panel after execution. The chain went straight from Memory/Model to the final response — the Calendar tool never appeared as an executed step. The model wasn't failing to use the tool; it wasn't attempting to use it at all.
+
+**Cause:** No system prompt was set on the AI Agent. Without explicit instructions, the model defaults to a strongly learned training pattern: "as an AI, I don't have access to your personal data/calendar." Having a tool wired up structurally doesn't override that default refusal behavior — the model has to be told, in-context, that this specific assistant has real tool access and is expected to use it.
+
+**Fix:** Added a system prompt explicitly countering the default refusal pattern, e.g.:
+```
+You are a helpful calendar assistant with real, working access to the
+user's Google Calendar through your tools. You are NOT a generic AI
+without calendar access — you have a "Get many events" tool that
+actually queries their real calendar data. When the user asks about
+their schedule, you MUST use the tool to check before answering.
+```
+After this, the Logs panel showed the Calendar tool as an actual executed step, and the agent correctly returned real event data.
+
+**Lesson:** For AI Agents specifically, a missing system prompt can cause *silent* failures — not errors, but confidently wrong refusals — because the model falls back on default "I can't access that" language baked in from general training. Always explicitly state that the agent has real tool access and should use it, especially for data categories (personal info, calendars, files) where models have strong learned habits of declining by default. The Logs panel — not just the final chat output — is the right place to check whether a tool was actually invoked or silently skipped.
+
+---
+
 ## Template for new entries
 
 ```markdown
