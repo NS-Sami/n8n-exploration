@@ -10,7 +10,7 @@ I'm a CSE student building toward an AI/ML engineering career, with a focus on L
 
 | Folder | Contents |
 |---|---|
-| `notes/` | Concept notes, organized by topic as I progress through the course (see `notes/01-fundamentals.md`, `notes/02-forms-wait-email.md`, `notes/03-web-scraping-ai-extraction.md`, `notes/04-ai-agents-tools-memory.md`, etc.) |
+| `notes/` | Concept notes, organized by topic as I progress through the course (see `notes/01-fundamentals.md`, `notes/02-forms-wait-email.md`, `notes/03-web-scraping-ai-extraction.md`, `notes/04-ai-agents-tools-memory.md`, `notes/05-if-filter-merge-loop.md`, etc.) |
 | `workflows/` | Exported JSON files for each workflow I build, so they can be re-imported into any n8n instance |
 | `BUGLOG.md` | Real issues I hit, what caused them, and how I fixed them |
 
@@ -22,6 +22,10 @@ To import a workflow:
 1. Open n8n → **Workflows** → **Add Workflow** → **Import from File**
 2. Select the relevant `.json` file from `workflows/`
 3. Reconnect your own credentials (API keys, OAuth) — these are never included in exported files
+
+## Resources
+
+- [n8n practice spreadsheet](https://docs.google.com/spreadsheets/d/17V7LVrflcKAfLC5tz6h-n5wQyNyAYHLjQQuXwJBf19g/edit?usp=sharing) — Google Sheet used as the data source/sink for the row-fetch, AI-generation, and row-update workflows (view-only access)
 
 ## Progress
 
@@ -35,7 +39,10 @@ To import a workflow:
 - [x] Email automation (send vs. draft)
 - [x] Web scraping (HTTP Request + HTML extraction) → AI structured analysis
 - [x] AI Agents
-- [ ] Multi-step automation chains
+- [x] Multi-step automation chains
+- [x] Conditional logic (If, Filter)
+- [x] Parallel branches + Merge
+- [x] Loops with rate-limiting (Split in Batches + Wait)
 - [ ] Error handling / retries
 - [ ] Deployment considerations
 
@@ -53,7 +60,10 @@ To import a workflow:
 - Structured Output Parser
 - AI Agent node (tools, memory)
 - Google Calendar node (as AI tool)
-- JavaScript (Code nodes)
+- If / Filter nodes (conditional logic)
+- Merge node (parallel branch recombination)
+- Split in Batches / Loop node
+- JavaScript (Code nodes + inline expressions)
 
 ## License
 

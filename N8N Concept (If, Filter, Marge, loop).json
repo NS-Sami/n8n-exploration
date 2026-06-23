@@ -1,0 +1,573 @@
+{
+  "name": "N8N Concept (If, Filter, Marge, loop)",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        1376
+      ],
+      "id": "11a36e59-963f-4bee-9c88-91b99ba61c14",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fd82a73a-845e-4ab1-a7a7-b030d7f72dc0",
+              "name": "firstName :",
+              "value": "Sam",
+              "type": "string"
+            },
+            {
+              "id": "0fcf9b93-d346-42c7-b207-3a9cfa5d6f3a",
+              "name": "lastname : ",
+              "value": "Gaming",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        112,
+        0
+      ],
+      "id": "7e73c987-3206-4173-8c0f-ad0856ef7383",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "01ad27d3-cfd4-4aa0-953d-4b55ce86ddd6",
+              "name": "Prize : ",
+              "value": "100$",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        624,
+        -48
+      ],
+      "id": "1e8f933a-2a59-4928-b5dd-c3b2887551ab",
+      "name": "ifWin"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d66ee82b-affe-4243-b18c-fdc8c7fee747",
+              "name": "Prize :",
+              "value": "5$",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        624,
+        128
+      ],
+      "id": "39085ead-f4eb-4954-8ad4-9e04b5cfb665",
+      "name": "ifLose"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "86c8bc3d-36fe-4b6a-98fc-e18bf5e141b8",
+              "leftValue": "={{ $json['firstName :'] }}",
+              "rightValue": "Sam",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        320,
+        0
+      ],
+      "id": "ca055019-91e4-4cee-a562-54de12dba8c2",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "content": "## If \n",
+        "height": 96,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        272,
+        -128
+      ],
+      "id": "accbbd44-86a5-4760-b103-3793c428fc1b",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Filter",
+        "height": 96,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        272,
+        224
+      ],
+      "id": "fd2a8e58-0915-4b5e-b6fc-c64f3ad3915b",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"arrayName\" : [\n    \"Sam\",\n    \"Gaming\",\n    \"Nadim\",\n    \"Agent\"\n  ]\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        304,
+        400
+      ],
+      "id": "5947a0c3-9a73-4ae0-905c-04e60f390f41",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "bd0a516d-8c9f-4f6d-96c7-1b0e1e2be2c8",
+              "leftValue": "={{ $json.arrayName }}",
+              "rightValue": "Nabil",
+              "operator": {
+                "type": "array",
+                "operation": "contains",
+                "rightType": "any"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        512,
+        400
+      ],
+      "id": "a3168ebf-da42-42b0-a995-faacbe8caa9a",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "content": "## Marge\n",
+        "height": 96
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        576
+      ],
+      "id": "7ba3c523-4458-4d97-9668-7793102ebf52",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"personOne\" : \"Nabil\",\n  \"personTwo\" : \"Sami\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        80,
+        880
+      ],
+      "id": "d8f8e7f6-e0f5-4093-b8a6-e0ad24c08f48",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=write a funny story about  {{ $json.personOne }}. must be < 50 words. "
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        304,
+        768
+      ],
+      "id": "d692324e-6b3a-4c9a-864e-05a8e1636fac",
+      "name": "story personOne",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wo6ePzbDuV1SDYMi",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        720,
+        896
+      ],
+      "id": "d2d7f9ee-10ca-457d-9328-2735f6c8fa5f",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=write a funny story about  {{ $json.personTwo }}. must be < 50 words. "
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        304,
+        976
+      ],
+      "id": "ffa91966-6f33-4b03-992c-c4ecd4f7eaa5",
+      "name": "story personOne1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wo6ePzbDuV1SDYMi",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "=Story about {{  $json.content.parts[0].text.includes(\"Nabil\") ? \"Nabil\" : \"Sami\" }}",
+        "message": "={{ $json.content.parts[0].text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        960,
+        896
+      ],
+      "id": "a2852c82-65ac-406d-ad89-342a7f387511",
+      "name": "Create a draft",
+      "webhookId": "9270c220-85e3-4e5c-8a3c-10ce618fef12",
+      "notesInFlow": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "G7Nt7r8BqilAC6o5",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Marge\n",
+        "height": 96
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        288,
+        1184
+      ],
+      "id": "2d340e07-c3fa-4aca-8133-fa466952791e",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"personOne\" : \"Nabil\",\n  \"personTwo\" : \"Sami\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        176,
+        1376
+      ],
+      "id": "144b8146-3f39-43d6-8bda-3651cdb4ca59",
+      "name": "Edit Fields4"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        384,
+        1456
+      ],
+      "id": "24502eb8-f7bc-4677-8fd7-8ab5643f867f",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        688,
+        1472
+      ],
+      "id": "6ee3740b-66fa-4803-b264-fe7968bd43ad",
+      "name": "Wait",
+      "webhookId": "df6809d7-eb24-4041-8690-df4851a9dca0"
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "=Story about {{  $json.content.parts[0].text.includes(\"Nabil\") ? \"Nabil\" : \"Sami\" }}",
+        "message": "={{ $json.content.parts[0].text }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        1312
+      ],
+      "id": "7175e66b-fb6b-45e0-9a90-b37e668e7e00",
+      "name": "Create a draft1",
+      "webhookId": "9270c220-85e3-4e5c-8a3c-10ce618fef12",
+      "notesInFlow": false,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "G7Nt7r8BqilAC6o5",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "ifWin",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ifLose",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ifWin": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "story personOne",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "story personOne1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "story personOne": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "story personOne1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Create a draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Create a draft1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "38978599-c33c-4439-9094-5d0890ac9d22",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f99fbbd6fe663db28cdbdbb0b59dd1c687fc71b61efc2b434ee4f576b387a0ca"
+  },
+  "nodeGroups": [],
+  "id": "DIJqtDGO8uAjxDua",
+  "tags": []
+}
